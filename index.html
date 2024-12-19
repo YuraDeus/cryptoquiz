@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Crypto Quiz</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="crypto-prices">
+        <div class="price-widget btc-price-widget">
+            <div class="price-content">
+                <img src="https://assets.coingecko.com/coins/images/1/small/bitcoin.png" alt="BTC" class="crypto-icon">
+                <div class="price-info">
+                    <span class="crypto-price btc-price">$--,---</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="price-widget ltc-price-widget">
+            <div class="price-content">
+                <img src="https://assets.coingecko.com/coins/images/2/small/litecoin.png" alt="LTC" class="crypto-icon">
+                <div class="price-info">
+                    <span class="crypto-price ltc-price">$--,---</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="price-widget doge-price-widget">
+            <div class="price-content">
+                <img src="https://assets.coingecko.com/coins/images/5/small/dogecoin.png" alt="DOGE" class="crypto-icon">
+                <div class="price-info">
+                    <span class="crypto-price doge-price">$--,---</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Добавляем приветственный экран -->
+        <div id="welcome-screen">
+            <div class="welcome-content">
+                <h1>Вас приветствует крипто-квиз!</h1>
+                <p>У вас будет 10 вопросов, в каждом вопросе по 4 варианта ответа и на каждый ответ дается по 20 секунд!</p>
+                <p class="good-luck">Удачи! 🍀</p>
+                <button id="start-quiz-btn" class="start-quiz-btn">Начать квиз</button>
+            </div>
+        </div>
+
+        <!-- Остальные элементы скрываем изначально -->
+        <div id="quiz-content" class="hidden">
+            <div class="quiz-header">
+                <div class="header-content">
+                    <div class="progress-bar">
+                        <div id="progress" class="progress"></div>
+                    </div>
+                    <div class="score">Счёт: <span id="score">0</span></div>
+                </div>
+            </div>
+            
+            <div id="question-container">
+                <div class="timer-container">
+                    <div class="timer-bar">
+                        <div id="timer-progress" class="timer-progress"></div>
+                    </div>
+                    <span id="timer-text">20</span>
+                </div>
+                <h2 id="question"></h2>
+                <div id="answers" class="answers-grid">
+                </div>
+                <button id="submit-button" class="submit-btn" disabled>Ответить</button>
+                <button id="restart-quiz-btn" class="restart-quiz-btn">Начать заново</button>
+            </div>
+
+            <div id="result-container" class="hidden">
+                <h2>Результаты</h2>
+                <div class="result-score"></div>
+                <button id="restart-button" class="restart-btn">Начать заново</button>
+                <div class="telegram-link">
+                    <p>Узнайте больше о криптовалютах:</p>
+                    <a href="https://t.me/AfriaMining" target="_blank" class="channel-link">
+                        <img src="https://telegram.org/img/t_logo.png" alt="Telegram" class="telegram-icon">
+                        @AfriaMining
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="error-popup" class="error-popup hidden">
+        <div class="error-content">
+            <p>Ты хомяк! Пробуй еще раз</p>
+        </div>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html>
