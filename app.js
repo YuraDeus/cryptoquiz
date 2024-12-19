@@ -204,11 +204,13 @@ function submitAnswer() {
 }
 
 function showErrorPopup() {
-    const popup = document.getElementById('error-popup');
-    popup.classList.remove('hidden');
-    setTimeout(() => {
-        popup.classList.add('hidden');
-    }, 2000);
+    if (!document.getElementById('quiz-content').classList.contains('hidden')) {
+        const popup = document.getElementById('error-popup');
+        popup.classList.remove('hidden');
+        setTimeout(() => {
+            popup.classList.add('hidden');
+        }, 2000);
+    }
 }
 
 function updateProgress() {
@@ -342,29 +344,32 @@ function startTimer() {
 
 // Функция для обработки окончания времени
 function timeOut() {
-    const buttons = document.querySelectorAll('.answer-btn');
-    buttons.forEach(button => button.disabled = true);
-    
-    const question = questions[currentQuestion];
-    buttons[question.correct].classList.add('correct');
-    
-    showErrorPopup();
-    
-    setTimeout(() => {
-        currentQuestion++;
-        selectedAnswerIndex = null;
-        if (currentQuestion < questions.length) {
-            showQuestion();
-        } else {
-            showResults();
-        }
-    }, 1500);
+    if (!document.getElementById('quiz-content').classList.contains('hidden')) {
+        const buttons = document.querySelectorAll('.answer-btn');
+        buttons.forEach(button => button.disabled = true);
+        
+        const question = questions[currentQuestion];
+        buttons[question.correct].classList.add('correct');
+        
+        showErrorPopup();
+        
+        setTimeout(() => {
+            currentQuestion++;
+            selectedAnswerIndex = null;
+            if (currentQuestion < questions.length) {
+                showQuestion();
+            } else {
+                showResults();
+            }
+        }, 1500);
+    }
 }
 
 // Добавим обработчик для кнопки старта
 document.getElementById('start-quiz-btn').addEventListener('click', () => {
     document.getElementById('welcome-screen').classList.add('hidden');
     document.getElementById('quiz-content').classList.remove('hidden');
+    document.getElementById('error-popup').classList.add('hidden'); // Скрываем popup при старте
     initQuiz(); // Запускаем квиз
 });
 
